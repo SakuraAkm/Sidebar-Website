@@ -7,27 +7,36 @@
     --bg-menu: rgb(37, 37, 45);
     --bg-hover: rgb(31, 31, 31);
     --body-hover-dark: rgba(48, 48, 56, 0.70);
-    --body-hover-light: rgba(255, 255, 255, 0.5)
+    --body-hover-light: rgba(206, 206, 206, 0.377);
+    --body-bg-dark: url(imgs/BG-Dark.jpg);
+    --body-bg-light: url(imgs/BG-Light.png);
+    --outline-dark: transparent;
+    --outline-light: black;
 }
 
 .dark {
     --text: var(--text-dark);
     --bg: var(--bg-dark);
     --svg: var(var(--text-light));
+    --outline: var(--outline-dark);
+
 }
 
 .light {
     --text: var(--text-light);
     --bg: var(--bg-light);
     --svg: var(var(--text-dark));
+    --outline: var(var(--outline-light));
 }
 
 .body-dark {
     --body-hover: var(--body-hover-dark);
+    --body-bg: var(--body-bg-dark);
 }
 
 .body-light {
     --body-hover: var(--body-hover-light);
+    --body-bg: var(--body-bg-light);
 }
 
 * {
@@ -50,7 +59,6 @@ svg {
     transition: 0.3s;
 }
 
-
 html {
     font-size: 16px;
 }
@@ -58,11 +66,12 @@ html {
 body {
     font-family: 'Gill Sans', sans-serif, 'Gill Sans MT', Calibri, 'Trebuchet MS';
     color: var(--text-dark);
-    background-image: url(https://i.redd.it/oz4hiyfwg3ob1.jpg);
+    background: var(--body-bg);
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;
+    transition: background 0.3s;
 }
 
 body::before {
@@ -172,10 +181,13 @@ main {
     padding: 0.8rem 1.7rem;
     border-radius: 100px;
     cursor: pointer;
-    transition: border 0.3s;
+    transition: all 0.3s;
 }
 
 #language img {
+    border: 1px solid;
+    border-color: var(--outline);
+    border-radius: 100px;
     position: fixed;
     right: 4rem;
     width: 1.2rem;
@@ -191,13 +203,14 @@ main {
 }
 
 #language:hover {
-    background: var(--bg-dark);
+    background: var(--bg-menu);
 }
 
 /* HOME ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
 #home h1 {
-    font-size: 2rem;
+    font-size: 3rem;
+    outline: var(--outline);
 }
 
 #home h3 {
@@ -230,9 +243,30 @@ main {
 
 /* POSTS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
+#header-post {
+    margin-top: 1.5rem;
+}
+
+#post-yourself svg {
+    width: 10rem;
+    cursor: pointer;
+}
+
 #posts h1 {
     font-size: 2rem;
-    margin-top: 1.5rem;
+}
+
+#header-post input {
+    width: 15rem;
+    font-size: 0.9rem;
+    background-color: var(--bg);
+    border: none;
+    border-radius: 10px;
+    padding: 0.5rem 0.5rem;
+    outline: 1px solid;
+    outline-color: var(--outline);
+    margin-inline-end: 2rem;
+    transition: all 0.2s;
 }
 
 .posts-row {
@@ -248,6 +282,9 @@ main {
     max-width: 20rem;
     background-color: var(--bg);
     border-radius: 10px;
+    outline: 1px solid;
+    outline-color: var(--outline);
+    transition: outline 0.3s;
 }
 
 .card img {
@@ -312,6 +349,8 @@ main {
     padding: 0.75rem 1.1rem;
     border-radius: 100px;
     border: none;
+    outline: 1px solid;
+    outline-color: var(--outline);
     transition: all 0.2s;
 }
 
@@ -327,6 +366,8 @@ main {
     border: none;
     border-radius: 10px;
     padding: 0.5rem 0.5rem;
+    outline: 1px solid;
+    outline-color: var(--outline);
     transition: all 0.2s;
 }
 
@@ -373,6 +414,10 @@ main {
     margin-inline-start: auto;
 }
 
+.me-auto {
+    margin-inline-end: auto;
+}
+
 .mt-1 {
     margin-top: 1rem;
 }
@@ -417,6 +462,14 @@ main {
 
     .vh-100 {
         min-height: 79.55vh;
+    }
+
+    #home h1 {
+        font-size: 2rem;
+    }
+
+    #home h3 {
+        font-size: 1rem;
     }
 
     #home {

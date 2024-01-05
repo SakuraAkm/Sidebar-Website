@@ -87,12 +87,12 @@ langToggle.addEventListener("click", () => {
     setTimeout(() => {
         homeEng.classList.toggle("hide");
         homeIta.classList.toggle("hide");
-    }, 500);
+    }, 300);
 
     setTimeout(() => {
         count % 2 == 0 ?
             homeIta.classList.toggle("opacity0") : homeEng.classList.toggle("opacity0");
-    }, 600);
+    }, 400);
 })
 
 // POINTERS MOVING 
@@ -109,6 +109,7 @@ const ying = document.querySelector(".ying");
 const main = document.querySelector("main");
 
 ying.addEventListener("click", () => {
+    event.preventDefault();
     ying.children[0].children[0].classList.toggle("rotate");
 
     if (ying.children[0].children[1].textContent == "DARK MODE") {
