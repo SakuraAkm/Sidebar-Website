@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SideBar</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.4/gsap.min.js"></script>
+    <script src="script.js" defer></script>
+</head>
+
+<body class="body-dark">
+
+    <nav class="navbar">
+        <ul class="navbar-nav vh-100 d-flex">
+
+            <li class="logo arrow d-flex align-items-center"><a href="#" class="nav-link">
+                    <span class="link-text hide">SAKURAI</span>
+                    <svg id="arrow" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+                        class="bi bi-chevron-double-right" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd"
+                            d="M3.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L9.293 8 3.646 2.354a.5.5 0 0 1 0-.708z" />
+                        <path fill-rule="evenodd"
+                            d="M7.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L13.293 8 7.646 2.354a.5.5 0 0 1 0-.708z" />
+                    </svg>
+                </a></li>
+
+            <li class="nav-item selected-border">
+                <a href="#" class="nav-link selected-color">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-house-door-fill"
+                        viewBox="0 0 16 16">
+                        <path
+                            d="M6.5 14.5v-3.505c0-.245.25-.495.5-.495h2c.25 0 .5.25.5.5v3.5a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5" />
+                    </svg>
+                    <span class="link-text hide">HOME</span>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a href="#" class="nav-link">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-grid-fill"
+                        viewBox="0 0 16 16">
+                        <path
+                            d="M1 2.5A1.5 1.5 0 0 1 2.5 1h3A1.5 1.5 0 0 1 7 2.5v3A1.5 1.5 0 0 1 5.5 7h-3A1.5 1.5 0 0 1 1 5.5zm8 0A1.5 1.5 0 0 1 10.5 1h3A1.5 1.5 0 0 1 15 2.5v3A1.5 1.5 0 0 1 13.5 7h-3A1.5 1.5 0 0 1 9 5.5zm-8 8A1.5 1.5 0 0 1 2.5 9h3A1.5 1.5 0 0 1 7 10.5v3A1.5 1.5 0 0 1 5.5 15h-3A1.5 1.5 0 0 1 1 13.5zm8 0A1.5 1.5 0 0 1 10.5 9h3a1.5 1.5 0 0 1 1.5 1.5v3a1.5 1.5 0 0 1-1.5 1.5h-3A1.5 1.5 0 0 1 9 13.5z" />
+                    </svg>
+                    <span class="link-text hide">POSTS</span>
+                </a>
+            </li>
+
+            <li class="nav-item"><a href="#" class="nav-link">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-dpad-fill"
+                        viewBox="0 0 16 16">
+                        <path
+                            d="M6.5 0A1.5 1.5 0 0 0 5 1.5v3a.5.5 0 0 1-.5.5h-3A1.5 1.5 0 0 0 0 6.5v3A1.5 1.5 0 0 0 1.5 11h3a.5.5 0 0 1 .5.5v3A1.5 1.5 0 0 0 6.5 16h3a1.5 1.5 0 0 0 1.5-1.5v-3a.5.5 0 0 1 .5-.5h3A1.5 1.5 0 0 0 16 9.5v-3A1.5 1.5 0 0 0 14.5 5h-3a.5.5 0 0 1-.5-.5v-3A1.5 1.5 0 0 0 9.5 0zm1.288 2.34a.25.25 0 0 1 .424 0l.799 1.278A.25.25 0 0 1 8.799 4H7.201a.25.25 0 0 1-.212-.382l.799-1.279Zm0 11.32-.799-1.277A.25.25 0 0 1 7.201 12H8.8a.25.25 0 0 1 .212.383l-.799 1.278a.25.25 0 0 1-.424 0Zm-4.17-4.65-1.279-.798a.25.25 0 0 1 0-.424l1.279-.799A.25.25 0 0 1 4 7.201V8.8a.25.25 0 0 1-.382.212Zm10.043-.798-1.278.799A.25.25 0 0 1 12 8.799V7.2a.25.25 0 0 1 .383-.212l1.278.799a.25.25 0 0 1 0 .424Z" />
+                    </svg>
+                    <span class="link-text hide">GAME</span>
+                </a></li>
+
+            <li class="nav-item"><a href="#" class="nav-link">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-envelope-fill"
+                        viewBox="0 0 16 16">
+                        <path
+                            d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414.05 3.555ZM0 4.697v7.104l5.803-3.558zM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586l-1.239-.757Zm3.436-.586L16 11.801V4.697l-5.803 3.546Z" />
+                    </svg>
+                    <span class="link-text hide">CONTACT US</span>
+                </a></li>
+
+            <li class="ying"><a href="#" class="nav-link">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-brilliance"
+                        viewBox="0 0 16 16">
+                        <path
+                            d="M8 16A8 8 0 1 1 8 0a8 8 0 0 1 0 16M1 8a7 7 0 0 0 7 7 3.5 3.5 0 1 0 0-7 3.5 3.5 0 1 1 0-7 7 7 0 0 0-7 7" />
+                    </svg>
+                    <span class="link-text hide">LIGHT MODE</span>
+                </a></li>
+        </ul>
+    </nav>
+
+    <main class="dark">
+
+        <section id="home" class="vh-100 d-flex justify-content-center align-items-center text-center">
+            <div class="container mx-auto">
+
+                <div id="language" class="d-flex align-items-center">
+
+                    <div class="d-flex align-items-center">
+                        <img src="imgs/english.png" alt="ENG" id="ENG">
+                    </div>
+                    <div class="d-flex align-items-center">
+                        <img src="imgs/italian.png" alt="ITA" id="ITA" class="opacity0">
+                    </div>
+
+                </div>
+
+                <div id="pointers-section">
+                    <div class="pointer rotate-arrow">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-arrow-left"
+                            viewBox="0 0 16 16">
+                            <path fill-rule="evenodd"
+                                d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8" />
+                        </svg>
+                    </div>
+                    <div class="pointer rotate-arrow">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-arrow-left"
+                            viewBox="0 0 16 16">
+                            <path fill-rule="evenodd"
+                                d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8" />
+                        </svg>
+                    </div>
+                    <div class="pointer rotate-arrow">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-arrow-left"
+                            viewBox="0 0 16 16">
+                            <path fill-rule="evenodd"
+                                d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8" />
+                        </svg>
+                    </div>
+                    <div class="pointer rotate-arrow">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-arrow-left"
+                            viewBox="0 0 16 16">
+                            <path fill-rule="evenodd"
+                                d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8" />
+                        </svg>
+                    </div>
+                    <div class="pointer rotate-arrow">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-arrow-left"
+                            viewBox="0 0 16 16">
+                            <path fill-rule="evenodd"
+                                d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8" />
+                        </svg>
+                    </div>
+                    <div class="pointer rotate-arrow">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-arrow-left"
+                            viewBox="0 0 16 16">
+                            <path fill-rule="evenodd"
+                                d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8" />
+                        </svg>
+                    </div>
+                </div>
+
+                <h1 id="h1-ENG">Welcome to my Website</h1>
+                <h3 id="h3-ENG">I'm using it as a placeholder of some of my projects, every section of this
+                    website is unrelated to
+                    the other one, the only use of it is showing my frontend skills, all made with pure html, css and
+                    javascript (just the arrows are animated with the gsap library)
+                </h3>
+                <h1 id="h1-ITA" class="hide">Benvenuto sulla mia pagina</h1>
+                <h3 id="h3-ITA" class="hide">Sto usando questo website come un placeholder per alcuni miei progetti,
+                    ogni sezione e una parte del sito a se, l'unico uso del sito e mostrare le mie frontend skills,
+                    tutto e stato fatto con html, css e javascript puro (solo le freccie che indicano le sezioni sono
+                    animate con la libreria gsap)
+                </h3>
+            </div>
+
+        </section>
+
+        <section id="posts" class="vh-100 d-flex justify-content-center align-items-center text-center hide">
+
+            <div class="">
+                <h1>POST YOURSELF!</h1>
+
+                <div class="posts-row container mx-auto">
+                    <!-- JS -->
+                </div>
+
+            </div>
+        </section>
+
+        <section id="game" class="vh-100 hide d-flex justify-content-center align-items-center">
+            <div>
+
+                <h1 id="RPSajax" class="text-center">Rock Paper and Scissor</h1>
+                <div class="RPS-row container mx-auto d-flex justify-content-center align-items-center">
+                    <div id="me" class="test d-flex justify-content-center align-items-center text-center">YOU</div>
+                    <div id="opponent" class="test d-flex justify-content-center align-items-center text-center">YOUR
+                        OPPONENT
+                    </div>
+                </div>
+
+                <h2 class="text-center mt-1">Make Your Move</h2>
+                <div class="RPS-row game-container mx-auto d-flex justify-content-center align-items-center mt-1">
+                    <div class="RPS-select">
+                        <img src="/imgs/rock.png" alt="">
+                        <figcaption class="text-center">Rock</figcaption>
+                    </div>
+                    <div class="RPS-select">
+                        <img src="/imgs/paper.png" alt="">
+                        <figcaption class="text-center">Paper</figcaption>
+                    </div>
+                    <div class="RPS-select">
+                        <img src="/imgs/scissor.png" alt="">
+                        <figcaption class="text-center">Scissor</figcaption>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact-us" class="vh-100 d-flex justify-content-center align-items-center hide">
+            <div class="container mx-auto text-center">
+
+                <h1>CONTACT US</h1>
+                <h2>Tell us if something went wrong</h2>
+
+                <form action="" method="POST">
+                    <div class="mt-1 mb-1 d-flex justify-content-center align-items-center">
+                        <label for="name"></label>
+                        <input type="text" class="w-100" name="name" id="name" required placeholder="Name">
+                    </div>
+
+                    <div class="mt-1 mb-1 d-flex justify-content-center align-items-center">
+                        <label for="surname"></label>
+                        <input type="text" class="w-100" name="surname" id="surname" required placeholder="Surname">
+                    </div>
+
+                    <div class="mt-1 mb-1 d-flex justify-content-center align-items-center">
+                        <label for="email" class="d-block"></label>
+                        <input type="email" class="w-100" name="email" id="email" required placeholder="Email">
+                    </div>
+
+                    <div class="mt-1 mb-1 d-flex justify-content-center align-items-center">
+                        <label for="message" class="d-block"></label>
+                        <textarea name="message" id="message" class="w-100" placeholder="Write a message"></textarea>
+                    </div>
+
+                    <div>
+                        <button type="submit">SUBMIT</button>
+                    </div>
+
+                </form>
+            </div>
+
+        </section>
+
+
+
+        </div>
+    </main>
+
+</body>
+
+</html>
