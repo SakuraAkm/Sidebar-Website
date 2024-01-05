@@ -204,6 +204,11 @@ main {
     padding: 1rem 0;
 }
 
+#home-ITA,
+#home-ENG {
+    transition: opacity 0.5s;
+}
+
 #pointers-section {
     height: 100vh;
     position: fixed;

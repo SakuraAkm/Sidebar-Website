@@ -66,16 +66,33 @@ menuSections.forEach(section => {
 })
 
 // ENG / ITA
-
-const langToggle = document.getElementById("language")
+const langToggle = document.getElementById("language");
 const eng = document.getElementById("ENG");
 const ita = document.getElementById("ITA");
+const homeEng = document.getElementById("home-ENG");
+const homeIta = document.getElementById("home-ITA");
+let count = 1;
 
 langToggle.addEventListener("click", () => {
     ita.classList.toggle("toggle-switch");
     eng.classList.toggle("toggle-switch");
     ita.classList.toggle("opacity0");
     eng.classList.toggle("opacity0");
+
+    count++;
+
+    count % 2 == 0 ?
+        homeEng.classList.toggle("opacity0") : homeIta.classList.toggle("opacity0");
+
+    setTimeout(() => {
+        homeEng.classList.toggle("hide");
+        homeIta.classList.toggle("hide");
+    }, 500);
+
+    setTimeout(() => {
+        count % 2 == 0 ?
+            homeIta.classList.toggle("opacity0") : homeEng.classList.toggle("opacity0");
+    }, 600);
 })
 
 // POINTERS MOVING 
