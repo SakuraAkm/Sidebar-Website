@@ -128,7 +128,68 @@ ying.addEventListener("click", () => {
 })
 
 // POSTS
-const rowPosts = document.querySelector("#posts .posts-row")
+const rowPosts = document.querySelector("#posts .posts-row");
+const searchInput = document.getElementById("search-input");
+const openCreatePost = document.getElementById("add-post");
+const closeCreatePost = document.getElementById("X");
+const createPost = document.getElementById("create-post");
+
+
+// open and close the menu to post
+openCreatePost.addEventListener("click", () => {
+    createPost.classList.toggle("hide");
+})
+closeCreatePost.addEventListener("click", () => {
+    createPost.classList.toggle("hide");
+})
+
+//get data from form and use them to make a card
+const postImg = document.getElementById("post-img");
+const postTitle = document.getElementById("post-title");
+const postText = document.getElementById("post-text");
+const submitPost = document.getElementById("submit-post");
+
+postImg.addEventListener('change', function () {
+    const fileName = this.files[0].name;
+    document.getElementById('fileNameDisplay').textContent = fileName;
+});
+
+submitPost.addEventListener("click", () => {
+    event.preventDefault();
+
+    const card = document.createElement("div");
+    card.classList.add("card");
+
+    if (postImg.files.length > 0) {
+        const selectedFile = postImg.files[0];
+        const reader = new FileReader();
+
+        reader.onload = function (e) {
+            // Create an image element
+            const img = document.createElement("img");
+            img.src = e.target.result;
+            img.alt = "Uploaded Image";
+            const div = document.createElement("div");
+            div.classList.add("card-img");
+
+            card.insertAdjacentElement("afterbegin", img);
+        };
+
+        // Read the contents of the selected file
+        reader.readAsDataURL(selectedFile);
+    }
+
+    card.innerHTML += `
+        <h2>${postTitle.value}</h2>
+        <p>${postText.value}</p>`;
+
+    console.log(card);
+    createPost.classList.toggle("hide");
+    rowPosts.insertAdjacentElement("afterbegin", card);
+})
+
+
+
 // added custom img because the API didnt have them
 const myImgPosts = ["https://images.theconversation.com/files/314111/original/file-20200207-43095-1kj7lht.jpg?ixlib=rb-1.1.0&rect=0%2C109%2C4331%2C3051&q=20&auto=format&w=320&fit=clip&dpr=2&usm=12&cs=strip",
     "https://www.washingtonpost.com/wp-apps/imrs.php?src=https://arc-anglerfish-washpost-prod-washpost.s3.amazonaws.com/public/SZ7M6F4ZZUF3SY6SS4L5LO4CIU.JPG&w=1200",
@@ -141,33 +202,31 @@ const myImgPosts = ["https://images.theconversation.com/files/314111/original/fi
     "https://img.freepik.com/free-vector/people-surrounded-by-social-media-icons-concept-illustration_52683-23429.jpg",
     "https://t4.ftcdn.net/jpg/05/58/87/03/360_F_558870341_8gf7XgOOhEC0h3tvdMitWPxDs748U9zr.jpg",
     "https://st2.depositphotos.com/1177973/11036/i/450/depositphotos_110367524-stock-photo-adult-anti-stress-coloring.jpg",
-    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSxH2kdGAMK6e59TL83eHWSQgZ9nQas7Ypljw&usqp=CAU"
+    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSxH2kdGAMK6e59TL83eHWSQgZ9nQas7Ypljw&usqp=CAU",
+    "https://img-cdn.tnwcdn.com/image?fit=1280%2C720&url=https%3A%2F%2Fcdn0.tnwcdn.com%2Fwp-content%2Fblogs.dir%2F1%2Ffiles%2F2016%2F08%2FWomen20Holding20iPhone20620Mockup2028129.jpg&signature=22d8efb76dc578330ed9f609f8266a86",
+    "https://d1csarkz8obe9u.cloudfront.net/posterpreviews/new-post-online-instagram-template-design-2f14b9976df6cce94b46829fae185393_screen.jpg?ts=1610973635",
+    "https://media.istockphoto.com/id/1462934693/photo/architect-team-working-with-blueprints-for-architectural-plan-engineer-sketching-a.jpg?s=612x612&w=0&k=20&c=XlxveebKNMpGVxmuqCWcnPoPjt8yznjpfHlRB5daaI8="
 ];
+let usersPosts = [];
+
+searchInput.addEventListener("input", (i) => {
+    const value = i.target.value.toLowerCase();
+    usersPosts.forEach(post => {
+        const isVisible = post.title.toLowerCase().includes(value) || post.body.toLowerCase().includes(value);
+        post.element.classList.toggle("hide", !isVisible);
+    })
+})
 
 fetch("https://jsonplaceholder.typicode.com/posts")
     .then(response => response.json())
     .then(data => {
+        count = 0;
 
-        for (let i = 0; i < 12; i++) {
+        usersPosts = data.map(post => {
 
-            const card = document.createElement("div");
-            card.classList.add("card");
-
-            card.innerHTML = `
-            <div class="card">
-                <div class="card-img">
-                    <img src=${myImgPosts[i]} alt="image error">
-                </div>
-                <h2>${data[i].title}</h2>
-                <p>${data[i].body}</p>
-            </div>`;
-
-            rowPosts.appendChild(card);
-        }
-
-        /* WITH THE FOREACH
-
-        data.forEach(post => {
+            if (count > 14) {
+                return null;  // to limit the amout of post since the api has 100 posts
+            }
 
             const card = document.createElement("div");
             card.classList.add("card");
@@ -175,15 +234,17 @@ fetch("https://jsonplaceholder.typicode.com/posts")
             card.innerHTML = `
             <div class="card">
                 <div class="card-img">
-                    <img src="https://placehold.co/240x135" alt="image error">
+                    <img src=${myImgPosts[count]} alt="image error">
                 </div>
                 <h2>${post.title}</h2>
                 <p>${post.body}</p>
             </div>`;
 
-            rowPosts.appendChild(card);
-        })  */
+            count++;
 
+            rowPosts.appendChild(card);
+            return { element: card, title: post.title, body: post.body };
+        })
     })
     .catch(error => {
         console.log("ERROR: " + error);
@@ -234,3 +295,9 @@ moves.forEach(move => {
     });
 })
 
+// CONTACT US
+const contactUsSubmit = document.querySelector("#contact-us button");
+
+contactUsSubmit.addEventListener("click", () => {
+    alert("Thank you for submitting your Feedback!");
+})
