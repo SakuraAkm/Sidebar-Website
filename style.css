@@ -19,7 +19,7 @@
     --bg: var(--bg-dark);
     --svg: var(var(--text-light));
     --outline: var(--outline-dark);
-
+    --bg-post: var(--bg-menu);
 }
 
 .light {
@@ -27,6 +27,7 @@
     --bg: var(--bg-light);
     --svg: var(var(--text-dark));
     --outline: var(var(--outline-light));
+    --bg-post: var(--bg-light);
 }
 
 .body-dark {
@@ -223,25 +224,6 @@ main {
     transition: opacity 0.5s;
 }
 
-#pointers-section {
-    height: 100vh;
-    position: fixed;
-    display: flex;
-    flex-direction: column;
-    left: 5.5rem;
-    top: 0rem;
-}
-
-.pointer {
-    color: var(--text-hover);
-    padding-block: 1rem;
-    opacity: 0;
-}
-
-.pointer:last-child {
-    margin-top: auto;
-}
-
 /* POSTS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
 #header-post {
@@ -287,8 +269,11 @@ main {
 
 #create-post {
     position: fixed;
-    background-color: var(--bg-menu);
+    background-color: var(--bg-post);
     border-radius: 20px;
+    outline: 1px solid;
+    outline-color: var(--outline);
+    box-shadow: 0 0 2rem var(--text-hover);
 }
 
 .post-input {
@@ -311,6 +296,8 @@ label.file-label {
     font-weight: bold;
     color: var(--text);
     background-color: var(--bg);
+    outline: 1px solid;
+    outline-color: var(--outline);
     cursor: pointer;
     border-radius: 10px;
     transition: background-color 0.3s;
@@ -318,6 +305,7 @@ label.file-label {
 
 #fileNameDisplay {
     max-width: 95%;
+    color: var(--text);
     display: inline-flex;
     overflow: hidden;
 }
@@ -365,6 +353,9 @@ label.file-label:hover {
 
 /* GAME ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
+#game {
+    overflow: hidden;
+}
 
 .RPS-row {
     column-gap: 2rem;
@@ -378,7 +369,7 @@ label.file-label:hover {
     height: 11rem;
     background-position: center;
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size: contain;
 }
 
 .Rock {
@@ -413,6 +404,28 @@ label.file-label:hover {
     min-height: 8rem;
 }
 
+#contact-ajax {
+    font-size: 1rem;
+    margin-top: 0.4rem;
+    margin-bottom: 0.4rem;
+}
+
+.red-outline {
+    outline: 1px red solid;
+}
+
+.green-outline {
+    outline: 1px rgb(0, 228, 0) solid;
+}
+
+.red {
+    color: red;
+}
+
+.green {
+    color: rgb(0, 228, 0);
+}
+
 /* FORMS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
 input,
@@ -422,6 +435,7 @@ textarea {
     background-color: var(--bg);
     padding: 0.5rem 0.5rem;
     border: none;
+    color: var(--text);
     border-radius: 10px;
     outline: 1px solid;
     outline-color: var(--outline);
@@ -565,21 +579,6 @@ button:hover {
         justify-content: center;
     }
 
-    #pointers-section {
-        flex-direction: row;
-        width: 100vw;
-        left: 18rem;
-        top: 10rem;
-    }
-
-    .pointer {
-        padding-inline: 1.4%;
-    }
-
-    .rotate-arrow {
-        transform: rotate(-90deg);
-    }
-
     .link-text {
         display: none;
     }
@@ -631,10 +630,10 @@ button:hover {
     }
 
     #create-post {
-        width: 75%;
-        height: 76%;
-        max-width: 75%;
-        max-height: 76%;
+        width: 90%;
+        height: 60%;
+        max-width: 90%;
+        max-height: 60%;
         top: 4%;
     }
 }
@@ -656,10 +655,6 @@ button:hover {
     svg {
         min-width: 5rem;
         max-width: 5rem;
-    }
-
-    .rotate-arrow {
-        transform: rotate(0deg);
     }
 
     .selected-border {

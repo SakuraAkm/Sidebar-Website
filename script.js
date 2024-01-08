@@ -95,15 +95,6 @@ langToggle.addEventListener("click", () => {
     }, 400);
 })
 
-// POINTERS MOVING 
-
-const tl = gsap.timeline({ repeat: -1 });
-tl.to(pointers, { duration: 0.75, scale: 1.2, opacity: 1, delay: 5 })
-    .to(pointers, { x: -15, duration: 0.75, stagger: 0.3, scale: 1.2, delay: 0.5 })
-    .to(pointers, { x: 0, duration: 1, scale: 1, opacity: 0 })
-    .to(pointers, { delay: 5 });
-
-
 // DARK / LIGHT THEME
 const ying = document.querySelector(".ying");
 const main = document.querySelector("main");
@@ -211,6 +202,7 @@ let usersPosts = [];
 
 searchInput.addEventListener("input", (i) => {
     const value = i.target.value.toLowerCase();
+
     usersPosts.forEach(post => {
         const isVisible = post.title.toLowerCase().includes(value) || post.body.toLowerCase().includes(value);
         post.element.classList.toggle("hide", !isVisible);
@@ -297,7 +289,58 @@ moves.forEach(move => {
 
 // CONTACT US
 const contactUsSubmit = document.querySelector("#contact-us button");
+const contactInputs = document.querySelectorAll("#contact-us input");
+const contactTextarea = document.querySelector("#contact-us  textarea");
+const contactAjax = document.getElementById("contact-ajax");
 
 contactUsSubmit.addEventListener("click", () => {
-    alert("Thank you for submitting your Feedback!");
-})
+    event.preventDefault();
+    contactAjax.classList.remove("opacity0");
+    filledInput = 0;
+
+    contactInputs.forEach(input => {
+        if (input.value == "" || input.value == null) {
+            input.classList.remove("green-outline");
+            input.classList.add("red-outline");
+        } else {
+            input.classList.remove("red-outline");
+            input.classList.add("green-outline");
+            filledInput++;
+            console.log(filledInput);
+        }
+    })
+
+    if (contactTextarea.value == "" || contactTextarea.value == null) {
+        contactTextarea.classList.remove("green-outline");
+        contactTextarea.classList.add("red-outline");
+    } else {
+        contactTextarea.classList.remove("red-outline");
+        contactTextarea.classList.add("green-outline");
+        filledInput++;
+    }
+
+    console.log(filledInput);
+
+    if (filledInput == 4) {
+        contactAjax.classList.remove("red");
+        contactAjax.classList.add("green");
+        contactAjax.innerText = "Thank you for your Feedback!";
+        contactInputs.forEach(input => { input.value = ""; });
+        contactTextarea.value = "";
+
+        setTimeout(() => {
+            contactInputs.forEach(input => { input.classList.remove("green-outline"); });
+            contactTextarea.classList.remove("green-outline");
+            contactAjax.classList.add("opacity0");
+        }, 3500)
+
+    } else {
+        contactAjax.classList.remove("green");
+        contactAjax.classList.add("red");
+        contactAjax.innerText = "Some fields are not filled";
+    }
+
+});
+
+
+
